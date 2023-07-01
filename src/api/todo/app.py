@@ -47,9 +47,9 @@ async def startup_event():
         FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer)
 
     client = motor.motor_asyncio.AsyncIOMotorClient(
-        settings.MONGO_CONNECTION_STRING
+        settings.AZURE_COSMOS_CONNECTION_STRING
     )
     await init_beanie(
-        database=client[settings.MONGO_DATABASE_NAME],
+        database=client[settings.AZURE_COSMOS_DATABASE_NAME],
         document_models=__beanie_models__,
     )
